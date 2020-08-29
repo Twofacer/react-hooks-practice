@@ -1,4 +1,4 @@
-https://react-hook-practice-f3886.web.app/profile/Twofacer
+https://react-hook-practice-f3886.web.app/
 
 ## Instruction
 To start serch press Enter
