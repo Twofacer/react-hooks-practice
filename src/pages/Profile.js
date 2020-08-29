@@ -12,7 +12,7 @@ export const Profile =({match}) => {
     }, [])
    
     if (loading) {
-        return <p className="text-center">Загрузка...</p>
+        return <p className="text-center">Loading...</p>
     }
 
     const {
@@ -27,34 +27,42 @@ export const Profile =({match}) => {
         followers,
         following,
         public_repos,
-        public_gists
+        public_gists,
+        email
     } = user
+   
     return (
         <Fragment>
-            <Link to='/' className='btn btn-link'>На главную</Link>
+            <Link to='/' className='btn btn-link'> Return to search</Link>
             <div className="card mb-4">
                 <div className="card-body">
-                    <div className='col-sm-4 text-center'>
+                    <div className='col-sm-12 text-center'>
                         <img src={avatar_url} alt={name} style={{width: "250px"}}></img>
                          <h1>{name}</h1>
-                          {location && <p>Местоположение: {location}</p>} 
+                          {location && <p>Location: {location}</p>} 
                     </div>
                     <div className="col">
                         {
                             bio  && <Fragment>
-                                <h3>BIO</h3>
-                        <p>{bio}</p>
+                                <h3 style={{textAlign: 'center'}}>BIO</h3>
+                        <p style={{textAlign: 'center'}}>{bio}</p>
                             </Fragment>
                         }
+                        <div className='dop_info_holder'>
                         <a
                             href={html_url}
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="btn btn-dark">Открыть профиль</a>
+                            className="btn btn-dark customization_open_button">Open profile</a>
                             <ul>
                                 {login && <li>
                                 <strong>Username: </strong>
                                 {login}
+                                </li>}
+                                {email && <li>
+                                <strong>Email: </strong>
+                                <a href={'mailto:' + email}>{email}</a>
+                                
                                 </li>}
                                 {company && <li>
                                 <strong>Company: </strong>
@@ -62,13 +70,18 @@ export const Profile =({match}) => {
                                 </li>}
                                 {blog && <li>
                                 <strong>Website: </strong>
-                                {login}
+                                <a href={blog} target='_blank'>{blog}</a>
+                              
                                 </li>}
                             </ul>
-                            <div className="badge badge-primary">Подписчики: {followers}</div>               
-                            <div className="badge badge-success">Подписаны: {following}</div>               
-                            <div className="badge badge-info">Репозитории: {public_repos}</div>               
-                            <div className="badge badge-dark">Gists: {public_gists}</div>               
+                            </div>
+                            <div className="user_info_holder">
+                            <div className="badge badge-primary">Followers: {followers}</div>               
+                            <div className="badge badge-success">Following: {following}</div>               
+                            <div className="badge badge-info">Repos: {public_repos}</div>               
+                            <div className="badge badge-dark">Gists: {public_gists}</div> 
+                            </div>
+                                         
                     </div>
                 </div>
             </div>
